@@ -1,5 +1,8 @@
 package com.ximo.datastructuresinaction;
 
+import java.util.Arrays;
+import java.util.StringJoiner;
+
 /**
  * 自己的一个数组类
  *
@@ -44,12 +47,11 @@ public class Array {
      * @param element 需要添加的元素
      */
     public void addLast(int element) {
-       add(size, element);
+        add(size, element);
     }
 
     /**
      * 在数组中的头部位置进行添加元素
-     *
      *
      * @param element 需要添加元素
      */
@@ -75,7 +77,7 @@ public class Array {
         if (size == data.length) {
             throw new IllegalArgumentException("Add failed, Array is full");
         }
-        if (index < 9 || index > size) {
+        if (index < 0 || index > size) {
             throw new IllegalArgumentException("Add failed, Require index >= 0 and index <= size");
         }
         // 将后续的元素往后移动一个位置（从后往前依次挪动）
@@ -84,5 +86,20 @@ public class Array {
         }
         data[index] = element;
         size++;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder res = new StringBuilder();
+        res.append(String.format("Array: size = %d, capacity = %d\n", size, data.length));
+        res.append("[");
+        for (int i = 0; i < size; i++) {
+            res.append(data[i]);
+            if (i != size - 1) {
+                res.append(", ");
+            }
+        }
+        res.append("]");
+        return res.toString();
     }
 }
