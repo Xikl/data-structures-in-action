@@ -1,8 +1,5 @@
 package com.ximo.datastructuresinaction;
 
-import java.util.Arrays;
-import java.util.StringJoiner;
-
 /**
  * 自己的一个数组类
  *
@@ -112,6 +109,85 @@ public class Array {
             throw new IllegalArgumentException("Add failed, Require index >= 0 and index <= size");
         }
         data[index] = element;
+    }
+
+    /**
+     * 判断数组中是否包含该元素
+     *
+     * @param element 元素
+     * @return 是否包含 true or false
+     */
+    public boolean contains(int element) {
+        for (int i = 0; i < size; i++) {
+            if (data[i] == element) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * 查找元素，获得元素所在的index索引位置
+     * 查找不到返回 -1
+     *
+     * @param element 元素
+     * @return 查找元素，获得元素所在的index索引位置
+     */
+    public int find(int element) {
+        for (int i = 0; i < size; i++) {
+            if (data[i] == element) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * 删除元素
+     * 同样，将
+     * for (int i = index + 1; i < size; i++) {
+     * data[i - 1] = data[i];
+     * }
+     * 替换为
+     * if (size - index + 1 >= 0) {
+     * System.arraycopy(data, index + 1, data, index + 1 - 1, size - index + 1);
+     * }
+     *
+     * @param index 删除元素的位置
+     * @return 被删除元素的值
+     */
+    public int remove(int index) {
+        if (index < 0 || index > size) {
+            throw new IllegalArgumentException("Add failed, Require index >= 0 and index <= size");
+        }
+        // 返回值
+        int ret = data[index];
+        // 将右边的元素左移
+        if (size - index + 1 >= 0) {
+            System.arraycopy(data, index + 1, data, index + 1 - 1, size - index + 1);
+        }
+        size--;
+        return ret;
+    }
+
+    public int removeFirst() {
+        return remove(0);
+    }
+
+    public int removeLast() {
+        return remove(size - 1);
+    }
+
+    /**
+     * 指定元素的值，删除等于该值的第一个元素
+     *
+     * @param element 元素的值
+     */
+    public void removeElement(int element) {
+        int index = find(element);
+        if (index != -1) {
+            remove(index);
+        }
     }
 
     @Override

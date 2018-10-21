@@ -23,6 +23,9 @@ public class ArrayTest {
         arr.add(1, 100);
         arr.addFirst(30);
         System.out.println(arr.toString());
+
+        arr.remove(0);
+        System.out.println(arr.toString());
     }
 
 }
