@@ -19,5 +19,10 @@ public class ArrayTest {
             arr.addLast(i);
         }
         System.out.println(arr.toString());
+
+        arr.add(1, 100);
+        arr.addFirst(30);
+        System.out.println(arr.toString());
     }
+
 }

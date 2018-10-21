@@ -88,6 +88,32 @@ public class Array {
         size++;
     }
 
+    /**
+     * 获得数组中index位置中的元素
+     *
+     * @param index 元素
+     * @return 该数组中该为重元素的值
+     */
+    public int get(int index) {
+        if (index < 0 || index > size) {
+            throw new IllegalArgumentException("Add failed, Require index >= 0 and index <= size");
+        }
+        return data[index];
+    }
+
+    /**
+     * 修改指定位置的元素的值
+     *
+     * @param index   指定位置
+     * @param element 元素的值
+     */
+    public void set(int index, int element) {
+        if (index < 0 || index > size) {
+            throw new IllegalArgumentException("Add failed, Require index >= 0 and index <= size");
+        }
+        data[index] = element;
+    }
+
     @Override
     public String toString() {
         StringBuilder res = new StringBuilder();
