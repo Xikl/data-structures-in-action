@@ -1,7 +1,5 @@
 package com.ximo.datastructuresinaction;
 
-import java.util.Arrays;
-
 /**
  * 自己的一个数组类
  *
@@ -84,6 +82,7 @@ public class Array {
         if (size - index >= 0) {
             System.arraycopy(data, index, data, index + 1, size - index);
         }
+        data[index] = element;
         size++;
     }
 }
