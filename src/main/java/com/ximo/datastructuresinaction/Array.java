@@ -192,7 +192,8 @@ public class Array<E> {
         size--;
         // 帮助gc loitering objects != memory leak
         data[size] = null;
-        if (size == data.length / 2) {
+        // 当容量是capacity的1/4的时候，同时当length不等于1的时候，才进行扩容，
+        if (size == data.length / 4 && data.length / 2 != 0) {
             resize(data.length / 2);
         }
         return ret;
