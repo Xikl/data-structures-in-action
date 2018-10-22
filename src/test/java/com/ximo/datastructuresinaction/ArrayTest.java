@@ -14,7 +14,7 @@ public class ArrayTest {
 
     @Test
     public void testToString() {
-        Array<Integer> arr = new Array<>(20);
+        Array<Integer> arr = new Array<>();
         for (int i = 0; i < 10; i++) {
             arr.addLast(i);
         }
@@ -24,8 +24,8 @@ public class ArrayTest {
         arr.addFirst(30);
         System.out.println(arr.toString());
 
-        arr.remove(0);
-        System.out.println(arr.toString());
+//        arr.remove(0);
+//        System.out.println(arr.toString());
     }
 
 }

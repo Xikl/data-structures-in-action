@@ -19,12 +19,12 @@ public class Array<E> {
      */
     @SuppressWarnings("unchecked")
     public Array(int capacity) {
-        data = (E[])new Object[capacity];
+        data = (E[]) new Object[capacity];
         size = 0;
     }
 
     public Array() {
-        this(0);
+        this(10);
     }
 
     public int getSize() {
@@ -72,11 +72,11 @@ public class Array<E> {
      * @param element 元素
      */
     public void add(int index, E element) {
-        if (size == data.length) {
-            throw new IllegalArgumentException("Add failed, Array is full");
-        }
         if (index < 0 || index > size) {
             throw new IllegalArgumentException("Add failed, Require index >= 0 and index <= size");
+        }
+        if (size == data.length) {
+            resize(2 * data.length);
         }
         // 将后续的元素往后移动一个位置（从后往前依次挪动）
         if (size - index >= 0) {
@@ -84,6 +84,28 @@ public class Array<E> {
         }
         data[index] = element;
         size++;
+    }
+
+    /**
+     * 扩容
+     * 同样将
+     * for (int i = 0; i < size; i++) {
+     * newData[i] = data[i];
+     * }
+     * 改为
+     * if (size >= 0) {
+     * System.arraycopy(data, 0, newData, 0, size);
+     * }
+     *
+     * @param newCapacity 新的容量
+     */
+    @SuppressWarnings("unchecked")
+    private void resize(int newCapacity) {
+        E[] newData = (E[]) new Object[newCapacity];
+        if (size >= 0) {
+            System.arraycopy(data, 0, newData, 0, size);
+        }
+        data = newData;
     }
 
     /**
@@ -170,6 +192,9 @@ public class Array<E> {
         size--;
         // 帮助gc loitering objects != memory leak
         data[size] = null;
+        if (size == data.length / 2) {
+            resize(data.length / 2);
+        }
         return ret;
     }
 
