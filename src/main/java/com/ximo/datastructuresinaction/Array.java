@@ -6,9 +6,9 @@ package com.ximo.datastructuresinaction;
  * @author Ximo
  * @date 2018/10/21 23:34
  */
-public class Array {
+public class Array<E> {
 
-    private int[] data;
+    private E[] data;
 
     private int size;
 
@@ -17,8 +17,9 @@ public class Array {
      *
      * @param capacity 数组容量
      */
+    @SuppressWarnings("unchecked")
     public Array(int capacity) {
-        data = new int[capacity];
+        data = (E[])new Object[capacity];
         size = 0;
     }
 
@@ -43,7 +44,7 @@ public class Array {
      *
      * @param element 需要添加的元素
      */
-    public void addLast(int element) {
+    public void addLast(E element) {
         add(size, element);
     }
 
@@ -52,7 +53,7 @@ public class Array {
      *
      * @param element 需要添加元素
      */
-    public void addFirst(int element) {
+    public void addFirst(E element) {
         add(0, element);
     }
 
@@ -70,7 +71,7 @@ public class Array {
      * @param index   位置
      * @param element 元素
      */
-    public void add(int index, int element) {
+    public void add(int index, E element) {
         if (size == data.length) {
             throw new IllegalArgumentException("Add failed, Array is full");
         }
@@ -91,7 +92,7 @@ public class Array {
      * @param index 元素
      * @return 该数组中该为重元素的值
      */
-    public int get(int index) {
+    public E get(int index) {
         if (index < 0 || index > size) {
             throw new IllegalArgumentException("Add failed, Require index >= 0 and index <= size");
         }
@@ -104,7 +105,7 @@ public class Array {
      * @param index   指定位置
      * @param element 元素的值
      */
-    public void set(int index, int element) {
+    public void set(int index, E element) {
         if (index < 0 || index > size) {
             throw new IllegalArgumentException("Add failed, Require index >= 0 and index <= size");
         }
@@ -117,9 +118,9 @@ public class Array {
      * @param element 元素
      * @return 是否包含 true or false
      */
-    public boolean contains(int element) {
+    public boolean contains(E element) {
         for (int i = 0; i < size; i++) {
-            if (data[i] == element) {
+            if (data[i].equals(element)) {
                 return true;
             }
         }
@@ -133,7 +134,7 @@ public class Array {
      * @param element 元素
      * @return 查找元素，获得元素所在的index索引位置
      */
-    public int find(int element) {
+    public int find(E element) {
         for (int i = 0; i < size; i++) {
             if (data[i] == element) {
                 return i;
@@ -156,12 +157,12 @@ public class Array {
      * @param index 删除元素的位置
      * @return 被删除元素的值
      */
-    public int remove(int index) {
+    public E remove(int index) {
         if (index < 0 || index > size) {
             throw new IllegalArgumentException("Add failed, Require index >= 0 and index <= size");
         }
         // 返回值
-        int ret = data[index];
+        E ret = data[index];
         // 将右边的元素左移
         if (size - index + 1 >= 0) {
             System.arraycopy(data, index + 1, data, index + 1 - 1, size - index + 1);
@@ -170,11 +171,11 @@ public class Array {
         return ret;
     }
 
-    public int removeFirst() {
+    public E removeFirst() {
         return remove(0);
     }
 
-    public int removeLast() {
+    public E removeLast() {
         return remove(size - 1);
     }
 
@@ -183,7 +184,7 @@ public class Array {
      *
      * @param element 元素的值
      */
-    public void removeElement(int element) {
+    public void removeElement(E element) {
         int index = find(element);
         if (index != -1) {
             remove(index);
