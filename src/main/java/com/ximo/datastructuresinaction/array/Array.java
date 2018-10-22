@@ -1,4 +1,4 @@
-package com.ximo.datastructuresinaction;
+package com.ximo.datastructuresinaction.array;
 
 /**
  * 自己的一个数组类
@@ -122,6 +122,25 @@ public class Array<E> {
     }
 
     /**
+     * 取末尾的值
+     *
+     * @return 末尾的元素
+     */
+    public E getLast() {
+        return get(size - 1);
+    }
+
+    /**
+     * 获得头部的值
+     *
+     * @return 头部的元素
+     */
+    public E getFirst() {
+        return get(0);
+    }
+
+
+    /**
      * 修改指定位置的元素的值
      *
      * @param index   指定位置
@@ -186,8 +205,8 @@ public class Array<E> {
         // 返回值
         E ret = data[index];
         // 将右边的元素左移
-        if (size - index + 1 >= 0) {
-            System.arraycopy(data, index + 1, data, index + 1 - 1, size - index + 1);
+        for (int i = index + 1; i < size; i++) {
+            data[i - 1] = data[i];
         }
         size--;
         // 帮助gc loitering objects != memory leak

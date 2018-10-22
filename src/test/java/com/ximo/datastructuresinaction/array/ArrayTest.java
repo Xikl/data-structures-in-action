@@ -1,10 +1,7 @@
-package com.ximo.datastructuresinaction;
+package com.ximo.datastructuresinaction.array;
 
+import com.ximo.datastructuresinaction.array.Array;
 import org.junit.Test;
-
-import java.util.Arrays;
-
-import static org.junit.Assert.*;
 
 /**
  * @author Ximo
