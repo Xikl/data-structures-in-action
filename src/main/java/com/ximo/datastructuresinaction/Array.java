@@ -168,6 +168,8 @@ public class Array<E> {
             System.arraycopy(data, index + 1, data, index + 1 - 1, size - index + 1);
         }
         size--;
+        // 帮助gc loitering objects != memory leak
+        data[size] = null;
         return ret;
     }
 
