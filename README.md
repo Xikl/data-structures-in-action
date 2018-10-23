@@ -23,5 +23,11 @@ int[] arr = new int[10];
  
  解决办法 采用lazy的形式进行resize，具体看Array类中的remove方法
  ```
+- 3 循环队列
+```
+循环队列为空的标志：
+front == tail
+满的标志(tail + 1) % capcity = front
+```
  
    
