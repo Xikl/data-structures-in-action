@@ -76,6 +76,7 @@ public class LoopQueue<E> implements Queue<E> {
     @SuppressWarnings("unchecked")
     private void resize(int newCapacity) {
         E[] newData = (E[]) new Object[newCapacity + 1];
+        // 另外的一种遍历方式 仔细思考
         for (int i = 0; i < size; i++) {
             newData[i] = data[(i + front) % data.length];
         }
@@ -118,6 +119,7 @@ public class LoopQueue<E> implements Queue<E> {
         StringBuilder result = new StringBuilder();
         result.append(String.format("Queue: size = %d, capacity = %d\n", size, getCapacity()));
         result.append("front [");
+        // 让i等于front 每次都加1 然后 对数组的最大长度进行扩容
         for (int i = front; i != tail; i = (i + 1) % data.length) {
             result.append(data[i]);
             if ((i + 1) % data.length != tail) {
