@@ -4,18 +4,26 @@ package com.ximo.datastructuresinaction.queue;
  * @author Ximo
  * @date 2018/10/23 23:26
  */
-public class LoopQueue<E> implements Queue<E>{
+public class LoopQueue<E> implements Queue<E> {
 
-    /** 队列中的元素  */
+    /**
+     * 队列中的元素
+     */
     private E[] data;
 
-    /** 头位置 */
+    /**
+     * 头位置
+     */
     private int front;
 
-    /** 尾位置 */
+    /**
+     * 尾位置
+     */
     private int tail;
 
-    /** 队列的大小 */
+    /**
+     * 队列的大小
+     */
     private int size;
 
     /**
@@ -25,7 +33,7 @@ public class LoopQueue<E> implements Queue<E>{
      */
     @SuppressWarnings("unchecked")
     public LoopQueue(int capacity) {
-        data = (E[])new Object[capacity + 1];
+        data = (E[]) new Object[capacity + 1];
         front = 0;
         tail = 0;
         size = 0;
@@ -56,16 +64,67 @@ public class LoopQueue<E> implements Queue<E>{
 
     @Override
     public void enqueue(E element) {
+        // 判断是不是满的
+        if (isFull()) {
+            resize(getCapacity() * 2);
+        }
+        data[tail] = element;
+        tail = (tail + 1) % data.length;
+        size++;
+    }
 
+    @SuppressWarnings("unchecked")
+    private void resize(int newCapacity) {
+        E[] newData = (E[]) new Object[newCapacity + 1];
+        for (int i = 0; i < size; i++) {
+            newData[i] = data[(i + front) % data.length];
+        }
+        data = newData;
+        front = 0;
+        tail = size;
     }
 
     @Override
     public E dequeue() {
-        return null;
+        if (isEmpty()) {
+            throw new IllegalArgumentException("Cannot dequeue from an empty queue");
+        }
+        E result = data[front];
+        data[front] = null;
+        front = (front + 1) % data.length;
+        size--;
+        // 是否应该扩容
+        if ((size == getCapacity() / 4) && (getCapacity() / 2 != 0)) {
+            resize(getCapacity() / 2);
+        }
+        return result;
     }
 
     @Override
     public E getFront() {
-        return null;
+        if (isEmpty()) {
+            throw new IllegalArgumentException("Queue is empty");
+        }
+        return data[front];
+    }
+
+
+    public boolean isFull() {
+        return (tail + 1) % data.length == front;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder result = new StringBuilder();
+        result.append(String.format("Queue: size = %d, capacity = %d\n", size, getCapacity()));
+        result.append("front [");
+        for (int i = front; i != tail; i = (i + 1) % data.length) {
+            result.append(data[i]);
+            if ((i + 1) % data.length != tail) {
+                result.append(", ");
+            }
+        }
+        result.append("] tail");
+        return result.toString();
     }
 }

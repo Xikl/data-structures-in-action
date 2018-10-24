@@ -29,5 +29,14 @@ int[] arr = new int[10];
 front == tail
 满的标志(tail + 1) % capcity = front
 ```
- 
+两种遍历循环队列的方法
+```java
+for(i = 0, i < size, i++) {
+    System.out.println(data[(i + front) % data.length])
+}
+
+for(i = front, i !+ tail, i = (i + 1) % data.length) {
+    System.out.println(data[i])
+}
+```
    
