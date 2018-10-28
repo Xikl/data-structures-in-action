@@ -6,7 +6,7 @@ package com.ximo.datastructuresinaction.list;
  * @author Ximo
  * @date 2018/10/28 14:23
  */
-public class LinkList<E> {
+public class LinkedList<E> {
 
     /** 头部元素 */
     private Node head;
@@ -14,7 +14,7 @@ public class LinkList<E> {
     /**  */
     private int size;
 
-    public LinkList() {
+    public LinkedList() {
         this.head = null;
         this.size = 0;
     }

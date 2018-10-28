@@ -2,17 +2,15 @@ package com.ximo.datastructuresinaction.list;
 
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
 /**
  * @author Ximo
  * @date 2018/10/28 15:07
  */
-public class LinkListTest {
+public class LinkedListTest {
 
     @Test
     public void testAdd() {
-        LinkList<Integer> list = new LinkList<>();
+        LinkedList<Integer> list = new LinkedList<>();
 
         list.addFirst(3);
         list.addFirst(2);
