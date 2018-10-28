@@ -8,14 +8,14 @@ package com.ximo.datastructuresinaction.list;
  */
 public class LinkedList<E> {
 
-    /** 头部元素 */
-    private Node head;
+    /** 虚拟头部元素 */
+    private Node dummyHead;
 
-    /**  */
+    /** 大小 */
     private int size;
 
     public LinkedList() {
-        this.head = null;
+        this.dummyHead = new Node(null, null);
         this.size = 0;
     }
 
@@ -28,22 +28,6 @@ public class LinkedList<E> {
     }
 
     /**
-     * 在链表的头部进行添加
-     *
-     * @param element 被添加的元素
-     */
-    public void addFirst(E element) {
-//        Node node = new Node(element);
-//        node.next = head;
-//        head = node;
-
-        // 直接利用构造函数进行添加
-        head = new Node(element, head);
-        // 大小加1
-        size++;
-    }
-
-    /**
      * 在制定位置添加元素
      *
      * @param index 位置 从0开始
@@ -53,19 +37,25 @@ public class LinkedList<E> {
         if (index < 0) {
             throw new IllegalArgumentException("Add failed, Illegal index.");
         }
-        if (index == 0) {
-            addFirst(element);
-        } else {
             // 找到需要插入的位置
-            Node prev = head;
+        Node prev = dummyHead;
 
-            for (int i = 0; i < index - 1; i++) {
-                prev = prev.next;
-            }
-            // 同样和之前addFirst中的操作一致
-            prev.next = new Node(element, prev.next);
-            size++;
+        for (int i = 0; i < index; i++) {
+            prev = prev.next;
         }
+        // 同样和之前addFirst中的操作一致
+        prev.next = new Node(element, prev.next);
+        size++;
+    }
+
+
+    /**
+     * 在链表的头部进行添加
+     *
+     * @param element 被添加的元素
+     */
+    public void addFirst(E element) {
+        add(0, element);
     }
 
     public void addLast(E e) {
