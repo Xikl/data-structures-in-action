@@ -11,13 +11,15 @@ public class LinkedListTest {
     @Test
     public void testAdd() {
         LinkedList<Integer> list = new LinkedList<>();
+//
+//        list.addFirst(3);
+//        list.addFirst(2);
+//        list.addFirst(1);
+//        System.out.println(list);
+//
+//        list.add(2, 77);
+//        System.out.println(list);
+        list.add(0, 1);
 
-        list.addFirst(3);
-        list.addFirst(2);
-        list.addFirst(1);
-        System.out.println(list);
-
-        list.add(2, 77);
-        System.out.println(list);
     }
 }

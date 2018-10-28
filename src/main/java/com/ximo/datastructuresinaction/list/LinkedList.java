@@ -34,7 +34,7 @@ public class LinkedList<E> {
      * @param element 被添加的元素
      */
     public void add(int index, E element) {
-        if (index < 0) {
+        if (index < 0 || index > size) {
             throw new IllegalArgumentException("Add failed, Illegal index.");
         }
             // 找到需要插入的位置
@@ -62,6 +62,93 @@ public class LinkedList<E> {
         add(size, e);
     }
 
+    /**
+     * 获得指定位置的元素
+     *
+     * @param index 索引位置
+     * @return
+     */
+    public E get(int index) {
+        if (index < 0 || index >= size) {
+            throw new IllegalArgumentException("Add failed. Illegal index.");
+        }
+        Node cur = dummyHead.next;
+        for (int i = 0; i < index; i++) {
+            cur = cur.next;
+        }
+        return cur.e;
+    }
+
+    /**
+     * 获得第一一个元素
+     *
+     * @return 第一个元素
+     */
+    public E getFirst() {
+        return get(0);
+    }
+
+    /** 获得最后一个元素 */
+    public E getLast() {
+        return get(size - 1);
+    }
+
+    public void set(int index, E element) {
+        if (index < 0 || index >= size) {
+            throw new IllegalArgumentException("Add failed. Illegal index.");
+        }
+        Node cur = dummyHead.next;
+        for (int i = 0; i < index; i++) {
+            cur = cur.next;
+        }
+        cur.e = element;
+    }
+
+    /**
+     * 是否包含元素
+     *
+     * @param element 被查找的元素信息
+     * @return 是否包含
+     */
+    public boolean contains(E element) {
+        Node cur = dummyHead.next;
+//        for (int i = 0; i < size; i++) {
+//            if (element.equals(cur.e)) {
+//                return true;
+//            } else {
+//                cur = cur.next;
+//            }
+//        }
+        while (cur != null) {
+            if (cur.e.equals(element)) {
+                return true;
+            }
+            cur = cur.next;
+        }
+        return false;
+    }
+
+
+    @Override
+    public String toString() {
+        StringBuilder res = new StringBuilder();
+
+        // 第一种遍历方法
+//        Node cur = dummyHead.next;
+//        while (cur != null) {
+//            res.append(cur);
+//            res.append(" -> ");
+//            cur = cur.next;
+//        }
+
+        // 另一种遍历的方法
+        for (Node cur = dummyHead.next; cur != null; cur = cur.next) {
+            res.append(cur);
+            res.append(" -> ");
+        }
+        res.append("null");
+        return res.toString();
+    }
 
     /** 内部存储节点类 */
     private class Node {
