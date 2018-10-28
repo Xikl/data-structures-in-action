@@ -128,6 +128,39 @@ public class LinkedList<E> {
         return false;
     }
 
+    /**
+     * 删除元素
+     *
+     * @param index 索引位置
+     * @return 被删除的元素
+     */
+    public E remove(int index) {
+        if (index < 0 || index >= size) {
+            throw new IllegalArgumentException("Remove failed. Index is illegal");
+        }
+
+        // 遍历到要删除的节点的前一位置
+        Node prev = dummyHead;
+        for (int i = 0; i < index; i++) {
+            prev = prev.next;
+        }
+
+        // 跳过节点信息
+        Node retNode = prev.next;
+        prev.next = retNode.next;
+        // help gc
+        retNode.next = null;
+        return retNode.e;
+    }
+
+    public E removeFirst() {
+        return remove(0);
+    }
+
+    public E remveLast() {
+        // size - 1
+        return remove(size - 1);
+    }
 
     @Override
     public String toString() {
