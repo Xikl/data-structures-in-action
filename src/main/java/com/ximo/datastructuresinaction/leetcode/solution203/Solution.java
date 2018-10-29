@@ -1,5 +1,7 @@
 package com.ximo.datastructuresinaction.leetcode.solution203;
 
+import java.util.List;
+
 /**
  * 移除链表中的元素
  * 删除链表中等于给定值 val 的所有节点。
@@ -98,13 +100,43 @@ public class Solution {
     /**
      * LeetCode提供的默认类
      */
-    private class ListNode{
+    private static class ListNode{
         int val;
         ListNode next;
 
         ListNode(int x) {
             val = x;
         }
+
+        ListNode(int[] arr) {
+            if (arr == null || arr.length == 0) {
+                throw new IllegalArgumentException("Arr is empty");
+            }
+            this.val = arr[0];
+            ListNode cur = this;
+            for (int i = 1; i < arr.length; i++) {
+                cur.next = new ListNode(arr[i]);
+                cur = cur.next;
+            }
+        }
+
+        @Override
+        public String toString() {
+            StringBuilder res = new StringBuilder();
+            ListNode cur = this;
+            while (cur != null) {
+                res.append(cur.val).append(" -> ");
+                cur = cur.next;
+            }
+            res.append("null");
+            return res.toString();
+        }
+    }
+
+    public static void main(String[] args) {
+        int[] nums = {1, 2, 6, 5, 6, 4};
+        ListNode head = new ListNode(nums);
+        System.out.println(head);
     }
 
 
