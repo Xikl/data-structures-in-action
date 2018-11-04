@@ -97,6 +97,28 @@ public class Solution {
         return dummyHead.next;
     }
 
+    private ListNode removeElementByRecursion(ListNode head, int val) {
+        // 如果为空
+        if (head == null) {
+            return null;
+        }
+//        ListNode result = removeElementByRecursion(head.next, val);
+//        if (head.val == val) {
+//            return result;
+//        } else {
+//            head.next = result;
+//            return head;
+//        }
+
+        head.next = removeElementByRecursion(head.next, val);
+        if (head.val == val) {
+            return head.next;
+        } else {
+            return head;
+        }
+
+    }
+
     /**
      * LeetCode提供的默认类
      */
