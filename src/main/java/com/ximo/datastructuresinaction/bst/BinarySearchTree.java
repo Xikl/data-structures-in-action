@@ -54,6 +54,37 @@ public class BinarySearchTree<E extends Comparable<E>> {
         }
     }
 
+    /**
+     * 简单版本递归调用 需要更多的理解
+     *
+     * @param element 元素
+     */
+    public void addSimple(E element) {
+        // 递归调用
+        root = addSimple(root, element);
+    }
+
+    /**
+     * 递归调用
+     *
+     * @param node 节点信息
+     * @param element 元素
+     * @return 添加后的元素
+     */
+    private Node addSimple(Node node, E element) {
+        if (node == null) {
+            return new Node(element);
+        }
+        int compareResult = element.compareTo(node.e);
+        // 比该节点要小 放到右边
+        if (compareResult < 0) {
+            node.left = addSimple(node.left, element);
+        } else if (compareResult > 0) {
+            node.right = addSimple(node.right, element);
+        }
+        return node;
+    }
+
     private class Node {
         private E e;
 

@@ -93,6 +93,12 @@ public class LinkedList<E> {
         return get(size - 1);
     }
 
+    /**
+     * 修改值
+     *
+     * @param index 索引位置
+     * @param element 元素
+     */
     public void set(int index, E element) {
         if (index < 0 || index >= size) {
             throw new IllegalArgumentException("Add failed. Illegal index.");
