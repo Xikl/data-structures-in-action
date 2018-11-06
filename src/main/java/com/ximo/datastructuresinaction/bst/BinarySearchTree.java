@@ -126,6 +126,9 @@ public class BinarySearchTree<E extends Comparable<E>> {
      *
      */
     public void inOrderNR() {
+        if (root == null) {
+            return;
+        }
         Stack<Node> stack = new Stack<>();
         stack.push(root);
         while (!stack.isEmpty()) {
