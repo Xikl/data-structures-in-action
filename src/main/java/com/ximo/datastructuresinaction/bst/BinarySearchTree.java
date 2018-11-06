@@ -140,6 +140,43 @@ public class BinarySearchTree<E extends Comparable<E>> {
         preOrder(node.right);
     }
 
+    /**
+     * 中序遍历
+     *  遍历出来的结果就是排序后的结果
+     *
+     */
+    public void inOrder() {
+        inOrder(root);
+    }
+
+    /**
+     * 中序遍历
+     *
+     * @param node 节点信息
+     */
+    private void inOrder(Node node) {
+        if (node == null) {
+            return;
+        }
+        inOrder(node.left);
+        System.out.println(node.e);
+        inOrder(node.right);
+    }
+
+    /** 后序遍历 */
+    public void postOrder() {
+        postOrder(root);
+    }
+
+    /** 后续遍历 */
+    private void postOrder(Node node) {
+        if (node == null) {
+            return;
+        }
+        postOrder(node.left);
+        postOrder(node.right);
+        System.out.println(node.e);
+    }
     @Override
     public String toString() {
         StringBuilder res = new StringBuilder();
