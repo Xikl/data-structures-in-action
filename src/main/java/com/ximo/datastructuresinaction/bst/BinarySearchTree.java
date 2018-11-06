@@ -1,5 +1,7 @@
 package com.ximo.datastructuresinaction.bst;
 
+import java.util.Stack;
+
 /**
  * 二分搜索树
  *
@@ -117,6 +119,27 @@ public class BinarySearchTree<E extends Comparable<E>> {
             return contains(node.right, element);
         }
     }
+
+    /**
+     * 非递归前序遍历
+     * 根左右
+     *
+     */
+    public void inOrderNR() {
+        Stack<Node> stack = new Stack<>();
+        stack.push(root);
+        while (!stack.isEmpty()) {
+            Node cur = stack.pop();
+            System.out.println(cur.e);
+            if (cur.right != null) {
+                stack.push(cur.right);
+            }
+            if (cur.left != null) {
+                stack.push(cur.left);
+            }
+        }
+    }
+
 
     /**
      * 前序遍历
