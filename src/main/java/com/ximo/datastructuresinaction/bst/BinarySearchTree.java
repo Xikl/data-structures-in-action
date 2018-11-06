@@ -86,6 +86,38 @@ public class BinarySearchTree<E extends Comparable<E>> {
         return node;
     }
 
+
+    /**
+     * 是否包含
+     *
+     * @param element 元素
+     * @return 是否包含
+     */
+    public boolean contains(E element) {
+        return contains(root, element);
+    }
+
+    /**
+     * 是否包含该元素
+     *
+     * @param node 该节点及其子树
+     * @param element 要查找的元素
+     * @return 是否包含
+     */
+    private boolean contains(Node node, E element) {
+        if (node == null) {
+            return false;
+        }
+        int compareResult = element.compareTo(node.e);
+        if (compareResult == 0) {
+            return true;
+        } else if (compareResult < 0) {
+            return contains(node.left, element);
+        } else {// compareResult > 0 的情况
+            return contains(node.right, element);
+        }
+    }
+
     private class Node {
         private E e;
 
