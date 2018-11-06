@@ -118,6 +118,62 @@ public class BinarySearchTree<E extends Comparable<E>> {
         }
     }
 
+    /**
+     * 前序遍历
+     */
+    public void preOrder() {
+        preOrder(root);
+    }
+
+    /**
+     * 前序遍历
+     * 简单的
+     *
+     * @param node 节点信息
+     */
+    private void preOrder(Node node) {
+        if (node == null) {
+            return;
+        }
+        System.out.println(node.e);
+        preOrder(node.left);
+        preOrder(node.right);
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder res = new StringBuilder();
+        generateBSTString(root, 0, res);
+        return res.toString();
+    }
+
+    /**
+     * 生成树的结构字符串
+     *
+     * @param node 节点信息
+     * @param depth 深度
+     * @param res 结果字符串
+     */
+    private void generateBSTString(Node node, int depth, StringBuilder res) {
+        // 每个节点都要打印深度信息
+        res.append(generateDepthString(depth));
+        if (node == null) {
+            res.append("null\n");
+            return;
+        }
+        res.append(node.e).append("\n");
+        generateBSTString(node.left, depth + 1, res);
+        generateBSTString(node.right, depth + 1, res);
+    }
+
+    private String generateDepthString(int depth) {
+        StringBuilder res = new StringBuilder();
+        for (int i = 0; i < depth; i++) {
+            res.append("--");
+        }
+        return res.toString();
+    }
+
     private class Node {
         private E e;
 
