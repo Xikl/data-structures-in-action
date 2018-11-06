@@ -73,6 +73,7 @@ public class BinarySearchTree<E extends Comparable<E>> {
      */
     private Node addSimple(Node node, E element) {
         if (node == null) {
+            size++;
             return new Node(element);
         }
         int compareResult = element.compareTo(node.e);
