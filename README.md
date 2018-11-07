@@ -31,11 +31,11 @@ front == tail
 ```
 两种遍历循环队列的方法
 ```java
-for(i = 0, i < size, i++) {
+for(i = 0; i < size; i++) {
     System.out.println(data[(i + front) % data.length])
 }
 
-for(i = front, i !+ tail, i = (i + 1) % data.length) {
+for(i = front; i != tail; i = (i + 1) % data.length) {
     System.out.println(data[i])
 }
 ```
