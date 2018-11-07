@@ -1,5 +1,7 @@
 package com.ximo.datastructuresinaction.bst;
 
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Stack;
 
 /**
@@ -143,6 +145,24 @@ public class BinarySearchTree<E extends Comparable<E>> {
         }
     }
 
+    /**
+     * breadth-first
+     * 深度优先遍历
+     */
+    public void levelOrder() {
+        Queue<Node> queue = new LinkedList<>();
+        queue.add(root);
+        while (!queue.isEmpty()) {
+            Node cur = queue.remove();
+            System.out.println(cur.e);
+            if (cur.left != null) {
+                queue.add(root.left);
+            }
+            if (cur.right != null) {
+                queue.add(root.right);
+            }
+        }
+    }
 
     /**
      * 前序遍历
