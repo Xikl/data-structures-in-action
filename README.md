@@ -39,4 +39,14 @@ for(i = front; i != tail; i = (i + 1) % data.length) {
     System.out.println(data[i])
 }
 ```
-   
+- 4 删除树中的任意元素
+删除左右都有孩子的节点D
+找到 该值的右侧最小的值 S
+S 就是D的后继
+然后 需要删除S的最小值 S.right = removeMin(D.right)
+然后S.left = D.left
+删除D, S是新的子树的根
+
+
+
+
