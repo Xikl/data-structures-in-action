@@ -223,6 +223,36 @@ public class BinarySearchTree<E extends Comparable<E>> {
         postOrder(node.right);
         System.out.println(node.e);
     }
+
+    /** 查找最小元素 */
+    public E minmum() {
+        if (size == 0) {
+            throw new IllegalArgumentException(" BST is empty");
+        }
+        return minmum(root).e;
+    }
+
+    private Node minmum(Node node) {
+        if (node.left == null) {
+            return node;
+        }
+        return minmum(node.left);
+    }
+
+    /** 查找最大值 */
+    public E maxmum() {
+        if (size == 0) {
+            throw new IllegalArgumentException(" BST is empty");
+        }
+        return maxmum(root).e;
+    }
+
+    public Node maxmum(Node node) {
+        if (node.right == null) {
+            return node;
+        }
+        return maxmum(node.right);
+    }
     @Override
     public String toString() {
         StringBuilder res = new StringBuilder();
