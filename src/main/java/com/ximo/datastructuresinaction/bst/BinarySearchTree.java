@@ -253,6 +253,68 @@ public class BinarySearchTree<E extends Comparable<E>> {
         }
         return maxmum(node.right);
     }
+
+    public E remomveMin() {
+        // 找到最小的元素
+        E ret = minmum();
+        // 重新赋值根节点的信息 删除最小值的元素
+        root = removeMin(root);
+        return ret;
+    }
+
+    /**
+     * 删除该树中的最小元素
+     *
+     * @param node 树的根
+     * @return 删除最小值的 树的根节点
+     */
+    public Node removeMin(Node node) {
+        // 左子树为空
+        if (node.left == null) {
+            Node rightNode = node.right;
+            node.right = null;
+            size--;
+            return rightNode;
+        }
+
+        // 不为空的时候
+        node.left = removeMin(node.left);
+        return node;
+    }
+
+    /**
+     * 删除树中的最大元素
+     *
+     * @return 被删除的最大元素
+     */
+    public E remomveMax() {
+        // 找到最大的元素
+        E ret = maxmum();
+        // 重新赋值根节点的信息 删除最小值的元素
+        root = removeMax(root);
+        return ret;
+    }
+
+    /**
+     * 删除该树中的最小元素
+     *
+     * @param node 树的根
+     * @return 删除最小值的 树的根节点
+     */
+    public Node removeMax(Node node) {
+        // 左子树为空
+        if (node.right == null) {
+            Node leftNode = node.left;
+            node.left = null;
+            size--;
+            return leftNode;
+        }
+
+        // 不为空的时候
+        node.right = removeMax(node.right);
+        return node;
+    }
+
     @Override
     public String toString() {
         StringBuilder res = new StringBuilder();
