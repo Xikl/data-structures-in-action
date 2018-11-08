@@ -271,10 +271,7 @@ public class BinarySearchTree<E extends Comparable<E>> {
     public Node removeMin(Node node) {
         // 左子树为空
         if (node.left == null) {
-            Node rightNode = node.right;
-            node.right = null;
-            size--;
-            return rightNode;
+            return getAndRemoveRight(node);
         }
 
         // 不为空的时候
@@ -302,17 +299,77 @@ public class BinarySearchTree<E extends Comparable<E>> {
      * @return 删除最小值的 树的根节点
      */
     public Node removeMax(Node node) {
-        // 左子树为空
+        // 右子树为空
         if (node.right == null) {
-            Node leftNode = node.left;
-            node.left = null;
-            size--;
-            return leftNode;
+            return getAndRemoveLeft(node);
         }
 
         // 不为空的时候
         node.right = removeMax(node.right);
         return node;
+    }
+
+    public void remove(E element) {
+        root = remove(root, element);
+    }
+
+    private Node remove(Node node, E element) {
+        if (node == null) {
+            return null;
+        }
+        int compareResult = element.compareTo(node.e);
+        if (compareResult < 0) {
+            node.left = remove(node.left, element);
+            return node;
+        } else if (compareResult > 0) {
+            node.right = remove(node.right, element);
+            return node;
+        } else { // 相等的时候
+            // 左子树为空
+            if (node.left == null) {
+                return getAndRemoveRight(node);
+            }
+
+            // 右子树为空
+            if (node.right == null) {
+                return getAndRemoveLeft(node);
+            }
+
+            // 找到后继（替换者）
+            Node successor = minmum(node.right);
+            successor.right = removeMin(node.right);
+            successor.left = node.left;
+
+            // help gc
+            node.left = node.right = null;
+            return successor;
+        }
+    }
+
+    /**
+     * 移除右子树
+     *
+     * @param node 一棵树
+     * @return 返回被删除的右子树
+     */
+    private Node getAndRemoveRight(Node node) {
+        Node rightNode = node.right;
+        node.right = null;
+        size--;
+        return rightNode;
+    }
+
+    /**
+     * 移除左子树
+     *
+     * @param node 一棵树
+     * @return 返回被删除的左子树
+     */
+    private Node getAndRemoveLeft(Node node) {
+        Node leftNode = node.left;
+        node.left = null;
+        size--;
+        return leftNode;
     }
 
     @Override
