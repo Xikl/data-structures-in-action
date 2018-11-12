@@ -168,6 +168,30 @@ public class LinkedList<E> {
         return remove(size - 1);
     }
 
+    /**
+     * 删除指定元素
+     * 只能删除一个
+     *
+     * @param e 被删除的元素
+     */
+    public void removeElement(E e) {
+        Node prev = dummyHead;
+        while (prev.next != null) {
+            if (prev.next.e.equals(e)) {
+                break;
+            }
+            // 后移一位
+            prev = prev.next;
+        }
+        if (prev.next != null) {
+            Node delNode = prev.next;
+            prev.next = delNode.next;
+            // help gc
+            delNode.next = null;
+            size--;
+        }
+    }
+
     @Override
     public String toString() {
         StringBuilder res = new StringBuilder();
