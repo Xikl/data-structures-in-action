@@ -17,4 +17,10 @@ public class SolutionTest {
         boolean valid = solution.isValid(s);
         System.out.println(valid);
     }
+
+    @Test
+    public void name() {
+        String word = "bcde";
+        word.chars().map(charStr -> charStr - 'a').forEach(System.out::print);
+    }
 }
