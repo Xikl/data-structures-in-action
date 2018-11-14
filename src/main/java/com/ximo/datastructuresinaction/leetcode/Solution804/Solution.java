@@ -9,7 +9,7 @@ import java.util.TreeSet;
  * @author Ximo
  * @date 2018/11/14 22:54
  */
-public class Soluntion {
+public class Solution {
 
     private static final String[] CODES = new String[]{".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..",
             ".---", "-.-", ".-..", "--", "-.", "---", ".--.", "--.-", ".-.", "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--.."};
