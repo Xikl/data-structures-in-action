@@ -1,4 +1,4 @@
-package com.ximo.datastructuresinaction.leetcode.Solution804;
+package com.ximo.datastructuresinaction.leetcode.solution804;
 
 import java.util.Set;
 import java.util.TreeSet;
