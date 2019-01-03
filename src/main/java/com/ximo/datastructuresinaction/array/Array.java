@@ -238,6 +238,21 @@ public class Array<E> {
         }
     }
 
+    /**
+     * 交换元素
+     *
+     * @param prev 元素所在索引
+     * @param next 下一个所在的索引位置
+     */
+    public void swap(int prev, int next) {
+        if (prev < 0 || prev > size || next < 0 || next > size) {
+            throw new IndexOutOfBoundsException();
+        }
+        E temp = data[prev];
+        data[prev] = data[next];
+        data[next] = temp;
+    }
+
     @Override
     public String toString() {
         StringBuilder res = new StringBuilder();
