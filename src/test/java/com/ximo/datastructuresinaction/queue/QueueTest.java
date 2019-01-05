@@ -4,9 +4,8 @@ import org.junit.Test;
 
 import java.time.Duration;
 import java.time.Instant;
+import java.util.PriorityQueue;
 import java.util.Random;
-
-import static org.junit.Assert.*;
 
 /**
  * @author Ximo
@@ -64,5 +63,11 @@ public class QueueTest {
         Instant end = Instant.now();
         Duration timeConsuming = Duration.between(start, end);
         return timeConsuming.toMillis() / 1000;
+    }
+
+
+    @Test
+    public void testPriorityQueue() {
+        java.util.Queue<Integer> integerQueue = new PriorityQueue<>();
     }
 }
