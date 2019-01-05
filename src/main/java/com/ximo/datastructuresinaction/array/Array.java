@@ -1,5 +1,7 @@
 package com.ximo.datastructuresinaction.array;
 
+import java.util.Arrays;
+
 /**
  * 自己的一个数组类
  *
@@ -21,6 +23,12 @@ public class Array<E> {
     public Array(int capacity) {
         data = (E[]) new Object[capacity];
         size = 0;
+    }
+
+    @SuppressWarnings("unchecked")
+    public Array(E[] arr) {
+        data = (E[])Arrays.stream(arr).toArray();
+        size = arr.length;
     }
 
     public Array() {

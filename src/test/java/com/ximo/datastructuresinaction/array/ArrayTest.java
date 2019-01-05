@@ -1,6 +1,5 @@
 package com.ximo.datastructuresinaction.array;
 
-import com.ximo.datastructuresinaction.array.Array;
 import org.junit.Test;
 
 /**
@@ -25,4 +24,10 @@ public class ArrayTest {
 //        System.out.println(arr.toString());
     }
 
+    @Test
+    public void testArrToMyArray() {
+        Integer[] arr = {1, 2, 3};
+        Array<Integer> array = new Array<>(arr);
+        System.out.println(array);
+    }
 }

@@ -29,6 +29,21 @@ public class MaxHeap<E extends Comparable<E>> {
         data = new Array<>();
     }
 
+    /**
+     * 找到最后一个叶子节点，然后找到他的父亲节点
+     *
+     *
+     *
+     * @param arr
+     */
+    public MaxHeap(E[] arr) {
+        data = new Array<>(arr);
+        // 找到最后一个叶子节点，然后找到他的父亲节点
+        for (int cur = getParentIndex(arr.length - 1); cur >= 0; cur--) {
+            siftDown(cur);
+        }
+    }
+
     public int size() {
         return data.getSize();
     }
@@ -110,6 +125,22 @@ public class MaxHeap<E extends Comparable<E>> {
                 && data.get(leftChildIndex).compareTo(data.get(rightChildIndex)) < 0;
         return leftLessThanRight ? rightChildIndex : leftChildIndex;
     }
+
+    /**
+     * 取出堆中最大的元素，并替换为新的元素
+     * 再进行下沉操作
+     *
+     * @param newValue 一个新的值
+     * @return 堆中的最大值
+     */
+    public E replace(E newValue) {
+        E max = findMax();
+        data.set(0, newValue);
+        siftDown(0);
+        return max;
+    }
+
+
 
 
 }
