@@ -3,6 +3,7 @@ package com.ximo.datastructuresinaction.leetcode.solution347;
 import com.ximo.datastructuresinaction.queue.PriorityQueue;
 
 import java.util.*;
+import java.util.function.Function;
 
 import static java.util.stream.Collectors.counting;
 import static java.util.stream.Collectors.groupingBy;
@@ -72,11 +73,18 @@ public class Solution {
         return result;
     }
 
-    /** 用java的自带的优先队列实现 */
+    /**
+     * 用java的自带的优先队列实现
+     * 统计频次最大的那个 放入
+     *
+     * @param nums 数组
+     * @param k 前几个
+     * @return 前k个元素
+     */
     public List<Integer> topKFrequentByJavaQueue(int[] nums, int k) {
         // 将nums按照出现频率变为一个map
         Map<Integer, Long> numFrequency =
-                Arrays.stream(nums).boxed().collect(groupingBy(num -> num, counting()));
+                Arrays.stream(nums).boxed().collect(groupingBy(Function.identity(), counting()));
 
         // java中采用的是小顶堆的实现
         java.util.Queue<Integer> pq = new java.util.PriorityQueue<>((prev , next) -> {
@@ -84,11 +92,17 @@ public class Solution {
             return compareResult.intValue();
         });
 
+        // 遍历该map
         numFrequency.forEach((key, value) -> {
+            // 小于前k个元素
             if (pq.size() < k) {
+                // 直接添加
                 pq.add(key);
+                // 如果当前元素的出现频率大于堆首的元素的出现频率
             } else if (value > numFrequency.get(pq.peek())) {
+                // 先删除堆首的元素
                 pq.remove();
+                // 再添加当前元素
                 pq.add(key);
             }
         });
