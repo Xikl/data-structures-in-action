@@ -23,8 +23,10 @@ public class SegmentTree<E> {
     public SegmentTree(E[] arr, BinaryOperator<E> merger) {
         data = (E[]) Arrays.stream(arr).toArray();
         tree = (E[]) new Object[4 * data.length];
-        buildSegmentTree(0, 0, data.length);
+        // 要优先赋值
         this.merger = merger;
+        // 对于根节点 右边界应该 length - 1 如八个元素 [0, 7]
+        buildSegmentTree(0, 0, data.length - 1);
     }
 
     /**
