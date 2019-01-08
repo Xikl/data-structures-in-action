@@ -50,6 +50,39 @@ public class SegmentTree<E> {
         tree[treeIndex] = merger.apply(tree[leftChildIndex], tree[rightChildIndex]);
     }
 
+    public E queryRangeClose(int queryLeft, int queryRight) {
+        // 边界判断
+        if (queryLeft < 0 || queryRight > getSize() - 1 ||
+                queryLeft >= getSize() || queryRight >= getSize() || queryLeft > queryRight) {
+            throw new IllegalArgumentException("illegal argument exception");
+        }
+        return queryRangeClose(0, 0, getSize() - 1, queryLeft, queryRight);
+    }
+
+    public E queryRangeClose(int treeIndex, int left, int right, int queryLeft, int queryRight) {
+        // 边界条件
+        if (left == queryLeft && right == queryRight) {
+            return tree[treeIndex];
+        }
+
+        int mid = left + (right - left) / 2;
+        int leftChildIndex = getLeftChildIndex(treeIndex);
+        int rightChildIndex = getRightChildIndex(treeIndex);
+
+        // 刚好全在 区间的 右边部分
+        if (queryLeft >= mid + 1) {
+            return queryRangeClose(rightChildIndex, mid + 1, right, queryLeft, queryRight);
+            // 刚好在区间的左半部分
+        } else if (queryRight <= mid) {
+            return queryRangeClose(leftChildIndex, left, mid, queryLeft, queryRight);
+        }
+
+        // 左右都有 一部分 注意 queryRight 和 queryLeft的值已经变化
+        E leftResult = queryRangeClose(leftChildIndex, left, mid, queryLeft, mid);
+        E rightResult = queryRangeClose(rightChildIndex, mid + 1, right, mid + 1, queryRight);
+        return merger.apply(leftResult, rightResult);
+    }
+
     public E get(int index) {
         if (index < 0 || index > data.length) {
             throw new IndexOutOfBoundsException("index-out-of-bounds");
@@ -71,6 +104,6 @@ public class SegmentTree<E> {
 
     @Override
     public String toString() {
-        return Arrays.stream(tree).map(Object::toString).collect(joining("", "", ""));
+        return Arrays.stream(tree).map(Object::toString).collect(joining("", "[", "]"));
     }
 }
