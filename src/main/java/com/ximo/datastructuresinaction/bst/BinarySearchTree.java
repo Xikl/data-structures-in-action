@@ -125,7 +125,7 @@ public class BinarySearchTree<E extends Comparable<E>> {
     /**
      * 非递归前序遍历
      * 根左右
-     *
+     * 深度优先遍历
      */
     public void inOrderNR() {
         if (root == null) {
@@ -146,8 +146,8 @@ public class BinarySearchTree<E extends Comparable<E>> {
     }
 
     /**
-     * breadth-first
-     * 深度优先遍历
+     * 层序遍历
+     * 广度优先遍历
      */
     public void levelOrder() {
         Queue<Node> queue = new LinkedList<>();
