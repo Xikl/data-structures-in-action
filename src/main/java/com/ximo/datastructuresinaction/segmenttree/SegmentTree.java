@@ -85,6 +85,51 @@ public class SegmentTree<E> {
         return merger.apply(leftResult, rightResult);
     }
 
+    /**
+     * 更新线段树中的值
+     *
+     * @param index 指定位置
+     * @param newValue 要替换的值
+     */
+    public void set(int index, E newValue) {
+        if (index < 0 || index > getSize()) {
+            throw new IndexOutOfBoundsException();
+        }
+
+        // 更新原数组
+        data[index] = newValue;
+        set(0, 0, getSize() - 1, index, newValue);
+    }
+
+    /**
+     * 更新数据
+     *
+     * @param treeIndex 树的节点
+     * @param left 左节点
+     * @param right 右节点
+     * @param index 需要更新的位置
+     * @param newValue new value
+     */
+    private void set(int treeIndex, int left, int right, int index, E newValue) {
+        if (left == right) {
+            tree[treeIndex] = newValue;
+            return;
+        }
+
+        int mid = left + (right - left) / 2;
+        int leftChildIndex = getLeftChildIndex(index);
+        int rightChildIndex = getRightChildIndex(index);
+
+        if (index >= mid + 1) {
+            set(rightChildIndex, mid + 1, right, index, newValue);
+        } else  if (index <= mid ){
+            set(leftChildIndex, left, mid, index, newValue);
+        }
+
+        tree[treeIndex] = merger.apply(tree[leftChildIndex], tree[rightChildIndex]);
+    }
+
+
     public E get(int index) {
         if (index < 0 || index > data.length) {
             throw new IndexOutOfBoundsException("index-out-of-bounds");
