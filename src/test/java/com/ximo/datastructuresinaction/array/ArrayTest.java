@@ -2,6 +2,8 @@ package com.ximo.datastructuresinaction.array;
 
 import org.junit.Test;
 
+import java.util.Arrays;
+
 /**
  * @author Ximo
  * @date 2018/10/22 0:01
@@ -29,5 +31,15 @@ public class ArrayTest {
         Integer[] arr = {1, 2, 3};
         Array<Integer> array = new Array<>(arr);
         System.out.println(array);
+    }
+
+
+    @Test
+    public void testIntToInteger() {
+        int[] intArray = {1, 2, 3, 4};
+
+        Integer[] integerArrays = Arrays.stream(intArray).boxed().toArray(Integer[]::new);
+        System.out.println(Arrays.toString(integerArrays));
+
     }
 }

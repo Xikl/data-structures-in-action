@@ -55,10 +55,17 @@ public class NumArray {
      */
     public void update(int i, int val) {
         data[i] = val;
-        // 累加
+        // 累加 startIndex 为需要被更新的值中+1
         sumStartFromIndex(sum, data, i + 1);
     }
 
+    /**
+     * 求和
+     *
+     * @param sumArr 求和的数组
+     * @param dataArr 原始数据数组
+     * @param startIndex 其实的位置
+     */
     private void sumStartFromIndex(int[] sumArr, int[] dataArr, int startIndex) {
         for (int i = startIndex; i < sumArr.length; i++) {
             sumArr[i] = sumArr[i - 1] + dataArr[i - 1];
