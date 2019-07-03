@@ -42,6 +42,31 @@ public class SwapNode {
         return tail;
     }
 
+
+    /**
+     * 假设我们现在有 1-> 2 -> 3 -> 4
+     * 那么先反转 2-> 3 -> 4 得到 4 -> 3 -> 2
+     * 但是1 还是指向 2 的 1-> 2 所以先 1.2.tail = 1 然后 1.tail = null
+     * 最终就有了 4 3 2 1
+     *
+     *
+     * @param head 头结点
+     * @return
+     */
+    private static ListNode reverseNode(ListNode head) {
+        if (head == null || head.tail == null) {
+            return head;
+        }
+
+        // 缩小化我们的结果
+        ListNode newHead = reverseNode(head.tail);
+        head.tail.tail = head;
+        head.tail = null;
+
+        return newHead;
+    }
+
+
     public static void main(String[] args) {
         ListNode head = new ListNode(1);
         head.tail = new ListNode(2);
