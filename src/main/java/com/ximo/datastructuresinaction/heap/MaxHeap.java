@@ -3,6 +3,10 @@ package com.ximo.datastructuresinaction.heap;
 import com.ximo.datastructuresinaction.array.Array;
 
 /**
+ * 二叉堆的定义：
+ * 1.是一颗完全二叉树
+ * 2.大顶堆的父节点元素要比其左右孩子节点要大（小顶堆反之）
+ *
  * 大顶堆
  * 当数组索引从1开，那么
  * parent = i / 2
@@ -30,10 +34,12 @@ public class MaxHeap<E extends Comparable<E>> {
     }
 
     /**
+     * heapify:
+     * 将任意数组变成一个堆
+     * 1.主要思想是找到最后一个非叶子节点索引k（最后一个节点的父节点）
+     * 2.然后进行下沉操作siftDown(k)
+     *
      * 找到最后一个叶子节点，然后找到他的父亲节点
-     *
-     *
-     *
      * @param arr
      */
     public MaxHeap(E[] arr) {
