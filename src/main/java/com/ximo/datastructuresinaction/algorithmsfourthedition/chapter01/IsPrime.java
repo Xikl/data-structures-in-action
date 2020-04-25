@@ -1,10 +1,10 @@
-package com.ximo.datastructuresinaction.algorithmsfourthedition;
+package com.ximo.datastructuresinaction.algorithmsfourthedition.chapter01;
 
 /**
  * @author xikl
  * @date 2020/4/25
  */
-public class Chapter01 {
+public class IsPrime {
 
     public static boolean isPrime(int n) {
         // 大于1的数字才是
@@ -36,6 +36,5 @@ public class Chapter01 {
     public static void main(String[] args) {
         System.out.println(isPrime(13));
     }
-
 
 }
