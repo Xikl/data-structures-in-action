@@ -91,7 +91,7 @@ public class DoubleLinkedList<E> {
 
     /**
      * 修改其中的值
-     * todo
+     * todo 还没完成
      * @param index 所因为位置
      * @param element 元素
      */

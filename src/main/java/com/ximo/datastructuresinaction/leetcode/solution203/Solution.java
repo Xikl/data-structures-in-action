@@ -25,8 +25,8 @@ public class Solution {
      */
     public ListNode removeElements(ListNode head, int val) {
 //        return removeElementsByHeadAndHelpGc(head, val);
-//        return removeElementByDummyHead(head, val);
-        return removeElementsByHeadAndNotHelpGc(head, val);
+        return removeElementByDummyHead(head, val);
+//        return removeElementsByHeadAndNotHelpGc(head, val);
     }
 
 
@@ -159,6 +159,9 @@ public class Solution {
         int[] nums = {1, 2, 6, 5, 6, 4};
         ListNode head = new ListNode(nums);
         System.out.println(head);
+        Solution solution = new Solution();
+        ListNode listNode = solution.removeElements(head, 6);
+        System.out.println(listNode);
     }
 
 
